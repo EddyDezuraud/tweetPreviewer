@@ -1,12 +1,12 @@
 <template>
     <header :class="$style.wrapper">
         <span>
-            <strong>{{ name }}</strong>
+            <strong contenteditable="true">{{ name }}</strong>
         </span>
         <span v-if="badge">
             {{ badge }}
         </span>
-        <span class="grey">
+        <span class="grey" contenteditable="true">
             {{ nameId }}
         </span>
         <span v-if="date" class="grey">·</span>
@@ -26,6 +26,10 @@ defineProps(['name', 'badge', 'nameId', 'date'])
     display: flex;
     gap: 4px;
     font-size: 15px;
+}
+
+.wrapper * {
+    outline: none;
 }
 
 </style>
