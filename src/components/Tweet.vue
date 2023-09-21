@@ -22,7 +22,7 @@ const handlePaste = (event) => {
 
             <TweetHeader name="Name" badge="" name-id="username" date="12m" />
 
-            <div :class="$style.tweetContent" contenteditable="true" @paste="handlePaste">
+            <div class="editableElt" contenteditable="true" @paste="handlePaste">
                 Write your tweet content here...
             </div>
 
@@ -51,10 +51,5 @@ const handlePaste = (event) => {
     aspect-ratio: 1;
     border-radius: 50%;
     background: red;
-}
-
-.tweetContent:active,
-.tweetContent:focus {
-    outline: none;
 }
 </style>
