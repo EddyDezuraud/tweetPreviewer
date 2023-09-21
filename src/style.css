@@ -99,7 +99,7 @@ button:focus-visible {
 @font-face {
   font-family: 'Chirp';
   font-weight: 700;
-  src: url('./fonts/Chirp-Bold.woff2')
+  src: url('../fonts/Chirp-Bold.woff2')
 }
 
 @media (prefers-color-scheme: light) {
