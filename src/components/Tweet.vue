@@ -1,6 +1,14 @@
 <script setup>
 import TweetHeader from '../components/TweetHeader.vue'
-import TweetFooter from '../components/TweetFooter.vue' 
+import TweetFooter from '../components/TweetFooter.vue'
+
+
+const handlePaste = (event) => {
+    event.preventDefault(); // Empêcher le comportement par défaut de la coller
+    const clipboardData = event.clipboardData || window.clipboardData;
+    const text = clipboardData.getData('text/plain'); // Obtenir le texte brut du clipboard
+    document.execCommand('inserttext', false, text); // Insérer le texte brut sans le HTML
+};
 </script>
 
 <template>
@@ -12,9 +20,9 @@ import TweetFooter from '../components/TweetFooter.vue'
         </div>
         <div :class="$style.content">
 
-            <TweetHeader name="Eddy" badge="" name-id="eddyDsn" date="12m" />
+            <TweetHeader name="Name" badge="" name-id="username" date="12m" />
 
-            <div :class="$style.tweetContent" contenteditable="true">
+            <div :class="$style.tweetContent" contenteditable="true" @paste="handlePaste">
                 Write your tweet content here...
             </div>
 

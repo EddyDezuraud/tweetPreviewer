@@ -6,14 +6,15 @@
         <span v-if="badge">
             {{ badge }}
         </span>
-        <span class="grey" contenteditable="true">
-            {{ nameId }}
+        <span class="grey">
+            @<span contenteditable="true">
+                {{ nameId }}
+            </span>
         </span>
         <span v-if="date" class="grey">·</span>
         <span v-if="date" class="grey">
             {{ date }}
         </span>
-
     </header>
 </template>
 
@@ -31,5 +32,4 @@ defineProps(['name', 'badge', 'nameId', 'date'])
 .wrapper * {
     outline: none;
 }
-
 </style>
