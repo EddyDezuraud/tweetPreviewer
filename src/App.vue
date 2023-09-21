@@ -3,5 +3,5 @@ import Tweet from './components/Tweet.vue'
 </script>
 
 <template>
-  <Tweet msg="Vite + Vue" />
+  <Tweet/>
 </template>
