@@ -6,4 +6,19 @@ inject();
 
 <template>
   <Tweet/>
+  <a class="twitterLink grey" href="https://twitter.com/eddydsn" target="_blank">
+    @eddydsn
+  </a>
 </template>
+
+
+<style>
+
+.twitterLink {
+  position: absolute;
+  bottom: 20px;
+  font-weight: 800;
+  font-size: 13px;
+}
+
+</style>
