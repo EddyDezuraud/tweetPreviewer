@@ -5,22 +5,33 @@ inject();
 </script>
 
 <template>
-  <div id="titlePage">
-    <h1 >X Post Preview</h1>
-    <span class="grey">v0.0.1</span>
+  <div class="appWrapper">
+    <div id="titlePage">
+      <h1>X Post Preview</h1>
+      <span class="grey">v0.0.1</span>
+    </div>
+    <Tweet />
+    <a class="twitterLink grey" href="https://twitter.com/eddydsn" target="_blank">
+      Build by @eddydsn
+    </a>
   </div>
-  <Tweet/>
-  <a class="twitterLink grey" href="https://twitter.com/eddydsn" target="_blank">
-    @eddydsn
-  </a>
 </template>
 
 
 <style>
 
+.appWrapper {
+  display: flex;
+  height: 100vh;
+  justify-content: space-between;
+  flex-direction: column;
+  min-height: 100vh;
+  padding: 20px;
+  box-sizing: border-box;
+  gap: 20px;
+}
+
 #titlePage {
-  position: absolute;
-  top: 20px;
   text-align: center;
   width: 100%;
   left: 0;
@@ -37,17 +48,14 @@ inject();
   line-height: 1;
 }
 
-#titlePage > span {
+#titlePage>span {
   line-height: 1;
   font-size: 12px;
   font-weight: 700;
 }
 
 .twitterLink {
-  position: absolute;
-  bottom: 20px;
   font-weight: 800;
   font-size: 13px;
 }
-
 </style>
