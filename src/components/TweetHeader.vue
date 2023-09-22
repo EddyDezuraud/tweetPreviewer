@@ -1,14 +1,14 @@
 <template>
     <header :class="$style.wrapper">
         <span>
-            <strong class="editableElt" contenteditable="true" ref="editedNameRef" @input="handleInput('editedName')"
+            <strong class="editableElt" contenteditable="true" spellcheck="false" ref="editedNameRef" @input="handleInput('editedName')"
                 @paste="handlePaste($event, 'editedName')">{{ editedName }}</strong>
         </span>
         <span v-if="badge">
             {{ badge }}
         </span>
         <span class="grey">
-            @<span class="editableElt" contenteditable="true" @input="handleInput('editedNameId')"
+            @<span class="editableElt" contenteditable="true" spellcheck="false" @input="handleInput('editedNameId')"
                 @paste="handlePaste($event, 'editedNameId')" ref="editedNameIdRef">
                 {{ editedNameId }}
             </span>

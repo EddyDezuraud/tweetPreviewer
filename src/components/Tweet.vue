@@ -32,7 +32,7 @@ const getRandomHexColor = () => {
 
             <TweetHeader name="Name" badge="" name-id="username" date="12m" />
 
-            <div class="editableElt" contenteditable="true" @paste="handlePaste">
+            <div class="editableElt" contenteditable="true" spellcheck="false" @paste="handlePaste">
                 Write your tweet content here...
             </div>
 
