@@ -1,25 +1,36 @@
 <script setup>
-import Tweet from './components/Tweet.vue'
+import Loader from './components/Loader.vue'
+import FormModal from './components/FormModal.vue';
+import Tweet from './components/Tweet.vue';
 import { inject } from '@vercel/analytics';
 inject();
+
+const username = ref('');
+const showLoader = ref(false);
+const showFormModal = ref(false);
+const showPreviewer = ref(false)
+
+const onEndLoader = () => {
+  showLoader.value = false;
+  showFormModal.value = false;
+}
+
+const onValidForm = (e) => {
+  username.value = e.username;
+}
+
 </script>
 
 <template>
   <div class="appWrapper">
-    <div id="titlePage">
-      <h1>X Post Preview</h1>
-      <span class="grey">v0.0.1</span>
-    </div>
-    <Tweet />
-    <a class="twitterLink grey" href="https://twitter.com/eddydsn" target="_blank">
-      Build by @eddydsn
-    </a>
+    <Loader v-if="showLoader" @end="onEndLoader" />
+    <FormModal v-else-if="showFormModal" @valid="onValidForm" />
+    <Tweet v-else-if="showPreviewer" />
   </div>
 </template>
 
 
 <style>
-
 .appWrapper {
   display: flex;
   height: 100vh;
