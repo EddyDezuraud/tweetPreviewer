@@ -1,14 +1,31 @@
 <script setup>
-import Comp from './components/index.vue'
+import Loader from './Loader.vue'
+import FormModal from './FormModal.vue';
+import Tweet from './Tweet.vue';
+import { ref } from 'vue';
 
-import { inject } from '@vercel/analytics';
+const username = ref('');
+const showLoader = ref(true);
+const showFormModal = ref(false);
+const showPreviewer = ref(false)
 
-inject();
+const onEndLoader = () => {
+  console.log('end')
+  showLoader.value = false;
+  showFormModal.value = true;
+}
+
+const onValidForm = (e) => {
+  username.value = e.username;
+}
+
 </script>
 
 <template>
   <div class="appWrapper">
-    <Comp />
+    <Loader v-if="showLoader" @end="onEndLoader" />
+    <FormModal v-else-if="showFormModal" @valid="onValidForm" />
+    <Tweet v-else-if="showPreviewer" />
   </div>
 </template>
 
@@ -26,7 +43,7 @@ inject();
   gap: 20px;
 }
 
-/* #titlePage {
+#titlePage {
   text-align: center;
   width: 100%;
   left: 0;
@@ -52,5 +69,5 @@ inject();
 .twitterLink {
   font-weight: 800;
   font-size: 13px;
-} */
+}
 </style>
