@@ -1,16 +1,22 @@
 <script setup>
+const onSubmit = () => {
+    console.log('submited');
+}
 </script>
 
 <template>
-    <div :class="$style.wrapper">
-        <label :class="$style.label" for="usernameInput">What is you X username ?</label>
+    <form :class="$style.wrapper" @submit.prevent="onSubmit">
+        <label :class="$style.label" for="usernameInput">What is your X username ?</label>
         <div :class="$style.inputWrapper">
             <div :class="$style.inputPrefix">
                 <span>@</span>
             </div>
             <input :class="$style.input" id="usernameInput" type="text" placeholder="username">
         </div>
-    </div>
+        <button :class="$style.btn" type="submit">
+            Validate
+        </button>
+    </form>
 </template>
 
 
@@ -35,6 +41,7 @@
 
 .inputWrapper {
     position: relative;
+    margin-bottom: 80px;
 }
 
 .inputPrefix {
@@ -55,5 +62,45 @@
     border: solid 0px rgba(255, 255, 255, .1);
     font-size: 24px;
     outline: none;
+}
+
+.btn {
+    align-self: flex-end;
+    background: white;
+    color: black;
+    margin: 0;
+    font-weight: 600;
+    padding: 12px 36px;
+    border-radius: 8px;
+}
+
+
+/* ANIMATIONS */
+.btn,
+.label,
+.inputWrapper {
+    animation: itemOpening 0.7s ease;
+    animation-fill-mode: both;
+}
+
+.inputWrapper {
+    animation-delay: 0.3s;
+}
+
+.btn {
+    animation-delay: 0.6s;
+}
+
+
+@keyframes itemOpening {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 </style>
