@@ -17,6 +17,8 @@ const onEndLoader = () => {
 
 const onValidForm = (e) => {
   username.value = e.username;
+  showFormModal.value = false;
+  showPreviewer.value = true;
 }
 
 </script>

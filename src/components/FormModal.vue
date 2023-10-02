@@ -1,5 +1,36 @@
 <script setup>
+
+import { ref, defineEmits } from 'vue';
+
+const username = ref('');
+const error = ref(false);
+
+const emits = defineEmits('valid')
+
+const validateUsername = () => {
+    // Vérifier la longueur du username
+    if (username.value.length > 25) {
+        return false;
+    }
+
+    // Vérifier s'il y a des espaces
+    if (username.value.includes(' ')) {
+        return false;
+    }
+
+    return true;
+};
+
+
 const onSubmit = () => {
+
+    if (!validateUsername()) {
+        error.value = true;
+        return;
+    }
+
+    emits('valid', { username: username.value })
+
     console.log('submited');
 }
 </script>
@@ -11,7 +42,8 @@ const onSubmit = () => {
             <div :class="$style.inputPrefix">
                 <span>@</span>
             </div>
-            <input :class="$style.input" id="usernameInput" type="text" placeholder="username">
+            <input :class="$style.input" id="usernameInput" type="text" placeholder="username" maxlength="25">
+            <span :class="$style.error" v-if="error">Please enter valid username</span>
         </div>
         <button :class="$style.btn" type="submit">
             Validate
@@ -89,6 +121,10 @@ const onSubmit = () => {
 
 .btn {
     animation-delay: 0.6s;
+}
+
+.error {
+    color: red;
 }
 
 
