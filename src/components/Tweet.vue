@@ -1,7 +1,15 @@
 <script setup>
+import { defineProps, onMounted } from 'vue';
+
 import TweetHeader from '../components/TweetHeader.vue'
 import TweetFooter from '../components/TweetFooter.vue'
 
+const props = defineProps({
+    username: {
+        type: String,
+        default: ''
+    }
+})
 
 const handlePaste = (event) => {
     event.preventDefault(); // Empêcher le comportement par défaut de la coller
@@ -25,12 +33,13 @@ const getRandomHexColor = () => {
 
 <template>
     <div :class="$style.wrapper">
+
         <div :class="$style.left">
-            <div :class="$style.avatar" :style="{background: getRandomHexColor()}" ></div>
+            <div :class="$style.avatar" :style="{ background: getRandomHexColor() }"></div>
         </div>
         <div :class="$style.content">
 
-            <TweetHeader name="Name" badge="" name-id="username" date="12m" />
+            <TweetHeader name="" badge="" :name-id="username" date="12m" />
 
             <div class="editableElt" contenteditable="true" spellcheck="false" @paste="handlePaste">
                 Write your tweet content here...
@@ -69,6 +78,6 @@ const getRandomHexColor = () => {
     width: 100%;
     height: 100%;
     border-radius: 50%;
-    background: linear-gradient(45deg, rgba(255,255,255,0.04), rgba(255,255,255,0.1))
+    background: linear-gradient(45deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.1))
 }
 </style>

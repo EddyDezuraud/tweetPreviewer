@@ -1,8 +1,8 @@
 <template>
     <header :class="$style.wrapper">
         <span>
-            <strong class="editableElt" contenteditable="true" spellcheck="false" ref="editedNameRef" @input="handleInput('editedName')"
-                @paste="handlePaste($event, 'editedName')">{{ editedName }}</strong>
+            <strong class="editableElt" contenteditable="true" spellcheck="false" ref="editedNameRef"
+                @input="handleInput('editedName')" @paste="handlePaste($event, 'editedName')">{{ editedName }}</strong>
         </span>
         <span v-if="badge">
             {{ badge }}
@@ -21,7 +21,14 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, defineProps, onMounted } from 'vue';
+
+const props = defineProps({
+    nameId: {
+        type: String,
+        default: ''
+    }
+})
 
 const editedName = ref('Your Name');
 const editedNameId = ref('yourNameId');
@@ -73,6 +80,11 @@ const handlePaste = (event, field) => {
     document.execCommand('insertText', false, text);
     handleInput(field);
 };
+
+onMounted(() => {
+    editedNameId.value = props.nameId
+    editedName.value = props.nameId
+})
 </script>
 
 <style module>

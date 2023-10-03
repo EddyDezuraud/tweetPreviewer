@@ -1,13 +1,32 @@
 <script setup>
-import Loader from './Loader.vue'
+import Loader from './Loader.vue';
 import FormModal from './FormModal.vue';
 import Tweet from './Tweet.vue';
 import { ref } from 'vue';
 
+const usernameId = ref('');
 const username = ref('');
 const showLoader = ref(true);
 const showFormModal = ref(false);
 const showPreviewer = ref(false)
+
+// const checkTwitterIdExists = async (userId) => {
+//   const url = `https://twitter.com/${userId}/profile_image`;
+
+//   const response = await fetch(url);
+
+//   console.log(response)
+
+//   if (response.status === 200) {
+//     // The user ID exists.
+//     const u = response.headers.get('x-twitter-user-name');
+//     console.log(u)
+//     return u;
+//   } else {
+//     // The user ID does not exist.
+//     return null;
+//   }
+// };
 
 const onEndLoader = () => {
   console.log('end')
@@ -16,7 +35,10 @@ const onEndLoader = () => {
 }
 
 const onValidForm = (e) => {
-  username.value = e.username;
+  usernameId.value = e.username;
+
+  // const username = checkTwitterIdExists(usernameId.value);
+
   showFormModal.value = false;
   showPreviewer.value = true;
 }
@@ -24,9 +46,26 @@ const onValidForm = (e) => {
 </script>
 
 <template>
-  <div>
+  <div :class="$style.wrapper">
     <Loader v-if="showLoader" @end="onEndLoader" />
     <FormModal v-else-if="showFormModal" @valid="onValidForm" />
-    <Tweet v-else-if="showPreviewer" />
+    <div :class="$style.tweetPage" v-else-if="showPreviewer" >
+      <Tweet :username="usernameId"/>
+    </div>
   </div>
 </template>
+
+<style module>
+.wrapper {
+  width: 100%;
+  height: 100%;
+}
+
+.tweetPage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+</style>
