@@ -1,5 +1,5 @@
 <script setup>
-import { defineProps, onMounted } from 'vue';
+import { defineProps, onMounted, watch } from 'vue';
 
 import TweetHeader from '../components/TweetHeader.vue'
 import TweetFooter from '../components/TweetFooter.vue'
@@ -10,6 +10,8 @@ const props = defineProps({
         default: ''
     }
 })
+
+const loadingApiData = ref(false);
 
 const handlePaste = (event) => {
     event.preventDefault(); // Empêcher le comportement par défaut de la coller
@@ -29,6 +31,31 @@ const getRandomHexColor = () => {
 
     return hexColor;
 };
+
+const fetchData = async () => {
+    loadingApiData.value = true;
+
+    try {
+
+        const res = await fetch('https://twitter-crawler-nine.vercel.app/checkTwitterId/' + props.username);
+        console.log(res);
+
+    } catch (e) {
+
+        console.error(e);
+
+    } finally {
+        loadingApiData.value = false;
+    }
+}
+
+watch(() => props.username, (newValue) => {
+    fetchData();
+});
+
+onMounted(() => {
+    fetchData();
+})
 </script>
 
 <template>
