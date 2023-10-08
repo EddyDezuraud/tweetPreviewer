@@ -1,5 +1,5 @@
 <script setup>
-import { defineProps, onMounted, watch } from 'vue';
+import { defineProps, onMounted, watch, ref } from 'vue';
 
 import TweetHeader from '../components/TweetHeader.vue'
 import TweetFooter from '../components/TweetFooter.vue'
@@ -37,7 +37,7 @@ const fetchData = async () => {
 
     try {
 
-        const res = await fetch('https://twitter-crawler-nine.vercel.app/checkTwitterId/' + props.username);
+        const res = await fetch('https://twitter-crawler.onrender.com/checkTwitterId/' + props.username);
         console.log(res);
 
     } catch (e) {

@@ -136,7 +136,7 @@ const onSubmit = () => {
 .btn,
 .label,
 .inputWrapper {
-    animation: itemOpening 0.7s ease;
+    animation: itemOpening 1.2s ease;
     animation-fill-mode: both;
 }
 

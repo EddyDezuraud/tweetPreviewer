@@ -10,24 +10,6 @@ const showLoader = ref(true);
 const showFormModal = ref(false);
 const showPreviewer = ref(false)
 
-// const checkTwitterIdExists = async (userId) => {
-//   const url = `https://twitter.com/${userId}/profile_image`;
-
-//   const response = await fetch(url);
-
-//   console.log(response)
-
-//   if (response.status === 200) {
-//     // The user ID exists.
-//     const u = response.headers.get('x-twitter-user-name');
-//     console.log(u)
-//     return u;
-//   } else {
-//     // The user ID does not exist.
-//     return null;
-//   }
-// };
-
 const onEndLoader = () => {
   console.log('end')
   showLoader.value = false;
@@ -36,8 +18,6 @@ const onEndLoader = () => {
 
 const onValidForm = (e) => {
   usernameId.value = e.username;
-
-  // const username = checkTwitterIdExists(usernameId.value);
 
   showFormModal.value = false;
   showPreviewer.value = true;
